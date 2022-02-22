@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
-{
+public class CameraScript : MonoBehaviour {
     private Transform playerTarget;
 
     private float smoothTime = 0.5f;
     private Vector2 CameraVelocity;
 
 
-    void Start()
-    {
+    void Start() {
         playerTarget = GameObject.FindGameObjectWithTag("Player").transform;  
     }
 
-    void Update()
-    {
+    void Update() {
 
     }
 

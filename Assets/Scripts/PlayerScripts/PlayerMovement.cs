@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private float xAxis = 0;
     private float playerVelocity = 1.2f;
     
+    
     private Animator animator;
     private Rigidbody2D Rigidbody2D;
     private GameObject CharacterArmor;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yAxis = Input.GetAxisRaw("Vertical");
         xAxis = Input.GetAxisRaw("Horizontal");
+        
 
         animator.SetFloat("xAxis", xAxis);
         animator.SetFloat("yAxis", yAxis);
