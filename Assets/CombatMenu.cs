@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CombatMenu : MonoBehaviour {
-    public void StartButton() {
+    public void ScapeButton() {
         SceneManager.LoadScene("SampleScene");
     }
 
