@@ -9,17 +9,12 @@ public class MainMenuPlayer : MonoBehaviour
     
     private Animator animator;
     private Transform[] vertexOfSquare;
-    private Rigidbody2D Rigidbody2D;
 
-    private float playerVelocity = 1.2f;
-    private float TimeMovement = 0.06f;
     private int direction = 1;
 
     void Start()
     {
-        Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Debug.Log(vertexOfSquare.Length);
     }
 
     // Update is called once per frame
