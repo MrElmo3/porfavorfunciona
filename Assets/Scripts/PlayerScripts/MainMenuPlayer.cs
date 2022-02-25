@@ -6,6 +6,7 @@ public class MainMenuPlayer : MonoBehaviour
 {
     
     private Animator animator;
+    private Transform[] vertexOfSquare;
     private Rigidbody2D Rigidbody2D;
 
     private const float TimeMovementConstant = 0.5f;
@@ -17,6 +18,7 @@ public class MainMenuPlayer : MonoBehaviour
     {
         Rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Debug.Log(vertexOfSquare.Length);
     }
 
     // Update is called once per frame
