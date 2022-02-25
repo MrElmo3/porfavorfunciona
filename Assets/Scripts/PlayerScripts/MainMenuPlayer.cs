@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class MainMenuPlayer : MonoBehaviour
 {
+    [SerializeField]
+    private Transform[] nodes;
     
     private Animator animator;
     private Rigidbody2D Rigidbody2D;
 
-    private const float TimeMovementConstant = 0.5f;
-    private float TimeMovement = TimeMovementConstant;
-    private int direction = 1;
     private float playerVelocity = 1.2f;
+    private float TimeMovement = 0.06f;
+    private int direction = 1;
 
     void Start()
     {
@@ -21,69 +22,33 @@ public class MainMenuPlayer : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        /*
-        1 izquierda
-        2 abajo
-        3 derecha
-        4 arriba
-        */
-        switch(direction){
-            case 1:
-                Rigidbody2D.velocity = new Vector2(-1,0)*playerVelocity;
-                animator.SetFloat("xAxis", -1);
-                animator.SetFloat("yAxis", 0);
+    {   
 
-                if(TimeMovement > 0.0f){
-                    TimeMovement -= Time.deltaTime;
-                    break;
-                }
+        Vector3 nodoDireccion = nodes[direction-1].position;
 
-                direction++;
-                TimeMovement = TimeMovementConstant;
-                break;
-            
-            case 2:
-                Rigidbody2D.velocity = new Vector2(0,-1)*playerVelocity;
-                animator.SetFloat("xAxis", 0);
-                animator.SetFloat("yAxis", -1);
-
-                if(TimeMovement > 0.0f){
-                    TimeMovement -= Time.deltaTime;
-                    break;
-                }
-                
-                direction++;
-                TimeMovement = TimeMovementConstant;
-                break;
-            
-            case 3:
-                Rigidbody2D.velocity = new Vector2(1,0)*playerVelocity;
-                animator.SetFloat("xAxis", 1);
-                animator.SetFloat("yAxis", 0);
-
-                if(TimeMovement > 0.0f){
-                    TimeMovement -= Time.deltaTime;
-                    break;
-                }
-                
-                direction++;
-                TimeMovement = TimeMovementConstant;
-                break;
-            
-            case 4:
-                Rigidbody2D.velocity = new Vector2(0,1)*playerVelocity;
-                animator.SetFloat("xAxis", 0);
-                animator.SetFloat("yAxis", 1);
-
-                if(TimeMovement > 0.0f){
-                    TimeMovement -= Time.deltaTime;
-                    break;
-                }
-                
-                direction = 1;
-                TimeMovement = TimeMovementConstant;
-                break;
+        if(Vector3.Distance(nodoDireccion, transform.position) < 0.11f){
+            if(direction == 4) direction = 1;
+            else direction++;
         }
+
+        Vector3 velocity = Vector3.Normalize((nodoDireccion - transform.position));
+        changeAnimation(velocity);
+        transform.position = transform.position + new Vector3(velocity.x, velocity.y, velocity.z) * Time.deltaTime;
+
+
+    }
+
+    private void changeAnimation(Vector3 direction){
+        if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
+            animator.SetFloat("yAxis", 0);
+            animator.SetFloat("xAxis", direction.x/Mathf.Abs(direction.x));
+
+        }
+
+        else{
+            animator.SetFloat("yAxis", direction.y/Mathf.Abs(direction.y));
+            animator.SetFloat("xAxis", 0);
+        }
+        
     }
 }
