@@ -8,11 +8,11 @@ public class TextDisplay : MonoBehaviour
     // Start is called before the first frame update
     // private TextMes
     public Text textMesh;
+    public AudioSource tickSound;
 
     public float transitionTime = 5.0f;
     public float letterTransTime = 0.2f;
     public float sceneTransTime = 10.0f;
-    public AudioSource tickSound;
     public Image[] imagesOnScreen;
     [TextArea]
     public string[] textOnScreen = {
@@ -42,6 +42,11 @@ public class TextDisplay : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(letterTransTime);
         WaitForSeconds endOfWordDelay = new WaitForSeconds(letterTransTime*1.5f);
 
+        // The last scene must be different 
+        if( indexInArray == textOnScreen.Length-1){
+            textMesh.color = Color.red;
+            textMesh.fontSize = 40;
+        }
 
         while( i<finalString.Length){
             showingInScreen += finalString[i];
