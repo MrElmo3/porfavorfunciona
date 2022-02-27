@@ -36,6 +36,7 @@ public class MainMenuPlayer : MonoBehaviour
     }
 
     private void changeAnimation(Vector3 direction){
+            animator.SetBool("isMoving", true);
         if(Mathf.Abs(direction.x) > Mathf.Abs(direction.y)){
             animator.SetFloat("yAxis", 0);
             animator.SetFloat("xAxis", direction.x/Mathf.Abs(direction.x));

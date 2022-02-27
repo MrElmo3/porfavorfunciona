@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private float yAxis = 0;
     private float xAxis = 0;
     private float playerVelocity = 1.2f;
+    public bool isMoving;
     
     
     private Animator animator;
@@ -25,10 +26,18 @@ public class PlayerMovement : MonoBehaviour
     {
         yAxis = Input.GetAxisRaw("Vertical");
         xAxis = Input.GetAxisRaw("Horizontal");
+
+        if(yAxis != 0f || xAxis != 0f){ 
+            isMoving = true;
+        }
+        else{
+            isMoving = false;
+        }
         
 
         animator.SetFloat("xAxis", xAxis);
         animator.SetFloat("yAxis", yAxis);
+        animator.SetBool("isMoving", isMoving);
 
         for(int i =0; i< transform.childCount; i++){
             transform.GetChild(i).GetComponent<Animator>().SetFloat("xAxis", xAxis);
