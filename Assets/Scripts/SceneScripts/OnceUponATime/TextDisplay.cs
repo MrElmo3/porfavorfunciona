@@ -22,22 +22,28 @@ public class TextDisplay : MonoBehaviour
     void Start()
     {
         textMesh.fontStyle = FontStyle.Bold;
+        textMesh.text = "";
         StartCoroutine(DrawCOntroller());
     }
 
 
     IEnumerator DrawCOntroller(){
+        WaitForSeconds intial_delay = new WaitForSeconds(3.0f);
+        yield return intial_delay;
+        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicScript>().Play();
+
         for(int i = 0; i<textOnScreen.Length; i++){
-        textMesh.text = "";
         yield return  StartCoroutine(DrawText(i)); 
         }
         SceneManager.LoadScene("SampleScene");
 
     }
     IEnumerator DrawText( int indexInArray){
-        string showingInScreen = "";
+
+        textMesh.text = "";
+        string showingInScreen = "$"+this.textOnScreen[indexInArray]+"</color>";
         string finalString = this.textOnScreen[indexInArray];
-        int i = 0;
+        int charactersNumber = finalString.Length;
         // WaitForSeconds delay = new WaitForSeconds(transitionTime/finalString.Length);
         WaitForSeconds delay = new WaitForSeconds(letterTransTime);
         WaitForSeconds endOfWordDelay = new WaitForSeconds(letterTransTime*1.5f);
@@ -48,10 +54,17 @@ public class TextDisplay : MonoBehaviour
             textMesh.fontSize = 40;
         }
 
-        while( i<finalString.Length){
-            showingInScreen += finalString[i];
-            textMesh.text = showingInScreen;
+        int i = 0;
+        while( i<charactersNumber){
+            // showingInScreen += finalString[i];
+
+            showingInScreen = showingInScreen.Substring(0, i) + 
+            showingInScreen[i+1]+showingInScreen[i]+showingInScreen.Substring(i+2);
+            textMesh.text = showingInScreen.Replace("$","<color=#00000000>");
+
             Debug.Log(textMesh.text);
+            tickSound.Play();
+
             if (finalString[i] != ' ' && finalString[i] != '.') yield return delay;
             else if( finalString[i] == ' ') yield return endOfWordDelay;
             else {
@@ -59,11 +72,11 @@ public class TextDisplay : MonoBehaviour
                 yield return endOfWordDelay;
                 yield return endOfWordDelay;
             }
+
             i++;
-            tickSound.Play();
         }
 
-        showingInScreen += "...";
+        showingInScreen = finalString+"...";
         textMesh.text = showingInScreen;
         tickSound.Play();
         Debug.Log(textMesh.text);
@@ -71,7 +84,13 @@ public class TextDisplay : MonoBehaviour
 
     }
 
+    private void swap ( ref char a, ref char b){
+        char c = a;
+        a = b;
+        b = c;
+    }
     private void ImagesManager( int indexTransition){
+
 
     }
 }

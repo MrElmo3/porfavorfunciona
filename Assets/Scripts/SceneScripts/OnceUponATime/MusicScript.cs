@@ -10,7 +10,7 @@ public class MusicScript : MonoBehaviour
         DontDestroyOnLoad( this.gameObject );
     }
 
-    private void Start() {
+    public void Play() {
         music.Play();
     }
 }
