@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void StartButton() {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("OnceUponATime");
     }
 
     public void QuitButton() {

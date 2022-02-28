@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 969c9a1255b8e854ba55c069c9cd60ec
   - enabled: 1
+    path: Assets/Scenes/OnceUponATime.unity
+    guid: ab5c20ace78eb174ab253e890a93cad3
+  - enabled: 1
     path: Assets/Scenes/CombatScene.unity
     guid: b76acfa7259cba54d8abcd5f9e64dca2
   - enabled: 1
