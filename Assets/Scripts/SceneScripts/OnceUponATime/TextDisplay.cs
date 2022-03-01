@@ -15,10 +15,8 @@ public class TextDisplay : MonoBehaviour
     public float sceneTransTime = 10.0f;
     public Image[] imagesOnScreen;
     [TextArea]
-    public string[] textOnScreen = {
-        "Erase una vez, ",
-        "Esto no deberia mostrarse",
-        "Probando salto de lineadweee"};
+    public string[] textOnScreen;
+
     void Start()
     {
         textMesh.fontStyle = FontStyle.Bold;
@@ -33,7 +31,7 @@ public class TextDisplay : MonoBehaviour
         GameObject.FindGameObjectWithTag("Music").GetComponent<MusicScript>().Play();
 
         for(int i = 0; i<textOnScreen.Length; i++){
-        yield return  StartCoroutine(DrawText(i)); 
+            yield return  StartCoroutine(DrawText(i)); 
         }
         SceneManager.LoadScene("SampleScene");
 
@@ -48,7 +46,7 @@ public class TextDisplay : MonoBehaviour
         WaitForSeconds delay = new WaitForSeconds(letterTransTime);
         WaitForSeconds endOfWordDelay = new WaitForSeconds(letterTransTime*1.5f);
 
-        // The last scene must be different 
+        // The last text must be different 
         if( indexInArray == textOnScreen.Length-1){
             textMesh.color = Color.red;
             textMesh.fontSize = 40;
@@ -59,10 +57,12 @@ public class TextDisplay : MonoBehaviour
             // showingInScreen += finalString[i];
 
             showingInScreen = showingInScreen.Substring(0, i) + 
-            showingInScreen[i+1]+showingInScreen[i]+showingInScreen.Substring(i+2);
+            showingInScreen[i+1] + showingInScreen[i] + 
+            showingInScreen.Substring(i+2);
+            
             textMesh.text = showingInScreen.Replace("$","<color=#00000000>");
 
-            Debug.Log(textMesh.text);
+            //Debug.Log(textMesh.text);
             tickSound.Play();
 
             if (finalString[i] != ' ' && finalString[i] != '.') yield return delay;
@@ -79,7 +79,7 @@ public class TextDisplay : MonoBehaviour
         showingInScreen = finalString+"...";
         textMesh.text = showingInScreen;
         tickSound.Play();
-        Debug.Log(textMesh.text);
+        //Debug.Log(textMesh.text);
         yield return new WaitForSeconds(sceneTransTime);
 
     }
