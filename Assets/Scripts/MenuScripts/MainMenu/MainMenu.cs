@@ -5,10 +5,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : BasicMenu
 {
-    public void StartButton() {
-        SceneManager.LoadScene("OnceUponATime");
+
+    private void Start() {
+        
     }
 
     public void QuitButton() {

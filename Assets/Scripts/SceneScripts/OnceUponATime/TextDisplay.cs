@@ -33,7 +33,7 @@ public class TextDisplay : MonoBehaviour
         for(int i = 0; i<textOnScreen.Length; i++){
             yield return  StartCoroutine(DrawText(i)); 
         }
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
 
     }
     IEnumerator DrawText( int indexInArray){

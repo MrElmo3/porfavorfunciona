@@ -13,21 +13,5 @@ public class MannagerScript : MonoBehaviour
     // Update is called once per frame
     void Update() {
 
-        if( Input.GetKeyDown(KeyCode.Space)){
-            int actual_scene = SceneManager.GetActiveScene().buildIndex;
-            switch(actual_scene){
-                case 0:
-                    SceneManager.LoadScene(actual_scene + 1);
-                    break;
-                case 1:
-                    SceneManager.LoadScene(0);
-                    break;
-            }
-        }
-
-        if( Input.GetKeyDown(KeyCode.Escape)){
-            Application.Quit();
-        } 
-        
     }
 }
