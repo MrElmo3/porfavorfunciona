@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : BasicMenu
 {
 
-    private void Start() {
+    private void Awake() {
         
     }
 

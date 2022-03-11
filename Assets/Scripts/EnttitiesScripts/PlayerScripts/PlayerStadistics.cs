@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerStadistics : Entite
 {
-    public string nombre;
+    public string playerName;
 
-    public int puntosDisponibles;
+    public int pointsAvailable;
 
     public void LevelUp(){
 

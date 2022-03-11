@@ -7,7 +7,7 @@ public class BasicMenu : MonoBehaviour
     
     public GameObject Menu;
 
-    void Start()
+    private void Awake()
     {
         Menu.SetActive(false);
     }
