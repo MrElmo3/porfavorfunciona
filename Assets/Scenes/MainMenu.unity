@@ -3129,7 +3129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 1395837356}
   player: {fileID: 1395837355}
-  radioActivo: 0.7
+  radioActivo: 1
 --- !u!4 &1786318353
 Transform:
   m_ObjectHideFlags: 0
