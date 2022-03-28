@@ -1576,6 +1576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMoving: 0
+  animator: {fileID: 1524704033}
 --- !u!95 &1524704033
 Animator:
   serializedVersion: 3
@@ -1851,7 +1852,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1873639700
 Transform:
   m_ObjectHideFlags: 0
@@ -1953,7 +1954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1875868187
 Transform:
   m_ObjectHideFlags: 0

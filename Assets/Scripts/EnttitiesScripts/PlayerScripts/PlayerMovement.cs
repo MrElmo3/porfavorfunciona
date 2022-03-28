@@ -10,14 +10,13 @@ public class PlayerMovement : MonoBehaviour
     private float playerVelocity = 1.2f;
     public bool isMoving;
     
-    
+    [SerializeField]
     private Animator animator;
     private Rigidbody2D Rigidbody2D;
     private GameObject CharacterArmor;
-
     void Start()
     {
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
         Rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
@@ -44,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
             
         }
     }
+
 
     private void FixedUpdate() {
         Rigidbody2D.velocity = (new Vector2(xAxis, yAxis)) * playerVelocity;
