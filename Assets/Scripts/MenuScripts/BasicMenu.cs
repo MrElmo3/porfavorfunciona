@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class BasicMenu : MonoBehaviour
 {
-    
-    public GameObject Menu;
 
     private void Awake()
     {
-        Menu.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
 }
