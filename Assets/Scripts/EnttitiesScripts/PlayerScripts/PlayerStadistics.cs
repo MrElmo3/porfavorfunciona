@@ -8,6 +8,8 @@ public class PlayerStadistics : Entite
 
     public int pointsAvailable;
 
+    public bool OpenMenu = false;
+
     public void LevelUp(){
 
     }
