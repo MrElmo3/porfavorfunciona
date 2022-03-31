@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ExtraScript : MonoBehaviour
 {   
+    public GameObject parent;
     private Animator animador;
     private void Start() {
-        animador = gameObject.GetComponentInParent(typeof(Animator)) as Animator;
-
+        animador = parent.GetComponent<Animator>();
+        
     }
     public void ParentAnimation(){
         animador.SetBool("open",false);
