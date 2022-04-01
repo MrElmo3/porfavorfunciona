@@ -9,7 +9,7 @@ public class OptionsInGameMenu : BasicMenu
     private GameObject control;
 
     private void Update() {
-        if(control.GetComponent<InGameMenuController>().estado == 2){
+        if(control.GetComponent<InGameMenuController>().estado == InGameMenuController.estados.OptionsMenu){
 
         }
 

@@ -3,7 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InGameMenuController : MonoBehaviour
-{   
+{ 
+    public enum estados 
+    {
+        ClosedMenu = -1,
+        PauseMenu = 0,
+        SaveMenu = 1,
+        OptionsMenu = 2,
+        ExitMenu = 3,
+        InventoryMenu = 4,
+        StatsMenu = 5,
+    }
+
     [SerializeField]
     private GameObject PauseMenu;
 
@@ -13,79 +24,70 @@ public class InGameMenuController : MonoBehaviour
     [SerializeField]
     private GameObject InventoryMenu;
 
-    public int estado = -1;
+    public estados estado;
 
     private void Update() {
 
-        //hora de desarrollar una maquina de estados improvisada 
-        //estado -1 -> menus cerrados
-        //estado 0 -> Menu de pausa
-        //estado 1 -> menu de guardado
-        //estado 2 -> menu de opciones
-        //estado 3 -> menu de salida
-        //estado 4 -> menu de inventario
-        //estado 5 -> menu de stats 
-
-
         switch(estado){
-            case -1:
+            case estados.ClosedMenu:
                 if(Input.GetKeyDown(KeyCode.Escape)){
                     PauseMenu.SetActive(true);
-                    estado = 0;
+                    estado = estados.PauseMenu;
                     BackgoundColor.SetActive(true);
                     PauseMenu.GetComponent<PauseMenu>().PauseGame();
                 }
+
                 else if(Input.GetKeyDown(KeyCode.Tab)){
-                    estado = 4;
+                    estado = estados.InventoryMenu;
                     InventoryMenu.SetActive(true);
                 }
-                    break;
+                break;
 
-            case 0: //menu de pausa
+            case estados.PauseMenu:
                 if(Input.GetKeyDown(KeyCode.Escape)){
-                    estado = -1;
+                    estado = estados.ClosedMenu;
                     PauseMenu.GetComponent<PauseMenu>().ResumeGame();
                     BackgoundColor.SetActive(false);
                 }
                 break;
             
-            case 1: //menu de guardado
+            case estados.SaveMenu: //menu de guardado
                 if(Input.GetKeyDown(KeyCode.Escape)){
-                    estado = 0;
+                    estado = estados.ClosedMenu;
                     PauseMenu.SetActive(true);
                 }
                 break;
             
-            case 2: // menu de opciones
+            case estados.OptionsMenu: // menu de opciones
                 if(Input.GetKeyDown(KeyCode.Escape)){
-                    estado = 0;
+                    estado = estados.ClosedMenu;
                     PauseMenu.SetActive(true);
                 }
                 break;
             
-            case 3: // menu de salida
+            case estados.ExitMenu: // menu de salida
                 if(Input.GetKeyDown(KeyCode.Escape)){
-                    estado = 0;
+                    estado = estados.ClosedMenu;
                     PauseMenu.SetActive(true);
                 }
                 break;
             
-            case 4: // inventario(sin pausar el juego)
+            case estados.InventoryMenu: // inventario(sin pausar el juego)
                 if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Tab)){
-                    estado = -1;
+                    estado = estados.ClosedMenu;
                     InventoryMenu.transform.GetChild(1).GetComponent<Animator>().SetBool("open", false);
                 }
                 break;
             
-            case 5: // stats(sin pausar el juego)
+            case estados.StatsMenu: // stats(sin pausar el juego)
                 if(Input.GetKeyDown(KeyCode.Escape)){
-                    estado = -1;
+                    estado = estados.ClosedMenu;
                 }
                 break;
         }
     }
 
     public void ChangeState(int nuevoEstado){
-        estado = nuevoEstado;
+        estado = (estados)nuevoEstado;
     }
 }

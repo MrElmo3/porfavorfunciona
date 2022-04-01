@@ -9,6 +9,10 @@ public class inventoryMenuScript : BasicMenu
         transform.GetChild(1).GetComponent<Animator>().SetBool("open",true);
     }
 
+    public void CloseExtraMenu(){
+        transform.GetChild(1).GetComponent<Animator>().SetBool("open",false);
+    }
+
     public void DesactiveMenu(){
         transform.gameObject.SetActive(false);
     }
